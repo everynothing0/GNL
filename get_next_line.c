@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/18 15:32:29 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/25 00:43:42 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ char	*join_line(int location, char **buff)
 		*buff = NULL;
 		return (res);
 	}
-	tmp = 
+	tmp = ft_substr(*buffer, newline, BUFFER_SIZE);
+	res = *buffer;
+	res[newline] = 0;
+	*buffer = tmp;
+	return (res);
+
 }
-char	*get_line(int  fd, char *save)
+
+/*char	*read_line(int  fd, char *save)
 {
 	int		cnt_str;
 	char	*buff;
@@ -52,4 +58,25 @@ char	*get_line(int  fd, char *save)
 	cnt_str = 1;
 	buff[0] = '\0';
 
+}*/
+
+char	*get_next_line(int fd)
+{
+	static char	*buff[MAX_FD + 1];
+	char		*read_ret;
+	char		*result;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
+		return (NULL);
+	read_ret = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (read_ret == NULL)
+		return (NULL);
+	if (!buffer[fd])
+		buffer[fd] = ft_strdup("");
+	res = read_line(fd, &buff[fd], read_ret);
+	free_null(&read_ret);
+	return (res);
+}
+int	main(void)
+{
 }
