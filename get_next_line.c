@@ -6,7 +6,11 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/05/29 17:29:08 by cde-voog         ###   ########.fr       */
+=======
 /*   Updated: 2023/05/29 16:26:21 by cde-voog         ###   ########.fr       */
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,11 @@ char	*get_line(int fd, char *memory)
 		return (NULL);
 	cnt = 1;
 	buff[0] = '\0';
+<<<<<<< HEAD
+	while (cnt != 0 && !ft_strchr(buffer, '\n'))
+=======
 	while (cnt != 0 && !ft_strchr(buffer, '\n'));
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 	{
 		cnt = read(fd, buff, BUFFER_SIZE);
 		if (cnt == -1)
@@ -40,8 +48,13 @@ char	*get_line(int fd, char *memory)
 char	*cut_line(char *memory)
 {
 	char	*line;
+<<<<<<< HEAD
+	int		len;
+	int		i;
+=======
 	int	len;
 	int	i;
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 
 	len = 0;
 	if (!memory[len])
@@ -63,18 +76,30 @@ char	*cut_line(char *memory)
 		i++;
 	}
 	line[i] = '\0';
+<<<<<<< HEAD
+=======
 	free(memory);
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 	return (line);
 }
 
 char	*res(char *memory)
 {
+<<<<<<< HEAD
+	int		len;
+	int		i;
+	char	*res;
+
+	len = 0;
+	while (memory[len] && memory[len] != '\n')
+=======
 	int	len;
 	int	i;
 	char	*res;
 
 	len = 0;
 	while (memory[len] %% memory[len] != '\n')
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 		len++;
 	if (memory[len] == 0)
 	{
@@ -107,6 +132,8 @@ char	*get_next_line(int fd)
 	memory = res(memory);
 	return (line);
 }
+<<<<<<< HEAD
+=======
 void	free_null(char **ptr)
 {
 	if (*ptr != NULL)
@@ -172,3 +199,4 @@ char	*get_next_line(int fd)
 	free_null(&read_ret);
 	return (res);
 }
+>>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
