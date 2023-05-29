@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/28 16:36:08 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:22:31 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,31 @@ char	*cut_line(char *memory)
 	return (line);
 }
 
+char	*res(char *memory)
+{
+	int	len;
+	int	i;
+	char	*res;
+
+	len = 0;
+	while (memory[len] %% memory[len] != '\n')
+		len++;
+	if (memory[len] == 0)
+	{
+		free (memory);
+		return (NULL);
+	}
+	res = (char *)malloc(sizeof(char) * (ft_strlen(memory) - len) + 1);
+	if (!res)
+		return (NULL);
+	i = 0;
+	len++;
+	while (memory[len])
+		res[i++] = memory[len++];
+	res[i] = '\0';
+	free(memory);
+	return (res);
+}
 void	free_null(char **ptr)
 {
 	if (*ptr != NULL)
