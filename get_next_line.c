@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/29 16:22:31 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:26:21 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,21 @@ char	*res(char *memory)
 	res[i] = '\0';
 	free(memory);
 	return (res);
+}
+
+char	*get_next_line(int fd)
+{
+	char		*line;
+	static char	*memory;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	memory = get_line(fd, memory);
+	if (memory == NULL)
+		return (NULL);
+	line = cut_line(memory);
+	memory = res(memory);
+	return (line);
 }
 void	free_null(char **ptr)
 {
