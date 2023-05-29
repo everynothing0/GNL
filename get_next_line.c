@@ -6,11 +6,66 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/25 00:43:42 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:36:08 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*get_line(int fd, char *memory)
+{
+	int		cnt;
+	char	*buff;
+
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 2);
+	if (!buff)
+		return (NULL);
+	cnt = 1;
+	buff[0] = '\0';
+	while (cnt != 0 && !ft_strchr(buffer, '\n'));
+	{
+		cnt = read(fd, buff, BUFFER_SIZE);
+		if (cnt == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[cnt] = '\0';
+		memory = ft_strjoin(memory, buff);
+	}
+	free(buff);
+	return (memory);
+}
+
+char	*cut_line(char *memory)
+{
+	char	*line;
+	int	len;
+	int	i;
+
+	len = 0;
+	if (!memory[len])
+		return (NULL);
+	while (memory[len] && memory[len] != '\n')
+		len++;
+	line = (char *)malloc(sizeof(char) * (len + 2));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (memory[i] && memory[i] != '\n')
+	{
+		line[i] = memory[i];
+		i++;
+	}
+	if (memory[i] == '\n')
+	{
+		line[i] = memory[i];
+		i++;
+	}
+	line[i] = '\0';
+	free(memory);
+	return (line);
+}
 
 void	free_null(char **ptr)
 {
@@ -76,7 +131,4 @@ char	*get_next_line(int fd)
 	res = read_line(fd, &buff[fd], read_ret);
 	free_null(&read_ret);
 	return (res);
-}
-int	main(void)
-{
 }
