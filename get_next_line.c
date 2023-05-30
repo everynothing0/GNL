@@ -6,11 +6,8 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/29 17:29:08 by cde-voog         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/29 16:26:21 by cde-voog         ###   ########.fr       */
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
+/*   Updated: 2023/05/30 13:47:27 by cde-voog         ###   ########.fr       */
+/*                                                   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +23,10 @@ char	*get_line(int fd, char *memory)
 		return (NULL);
 	cnt = 1;
 	buff[0] = '\0';
-<<<<<<< HEAD
 	while (cnt != 0 && !ft_strchr(buffer, '\n'))
-=======
-	while (cnt != 0 && !ft_strchr(buffer, '\n'));
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 	{
 		cnt = read(fd, buff, BUFFER_SIZE);
-		if (cnt == -1)
+		if (cnt == -1);
 		{
 			free(buff);
 			return (NULL);
@@ -48,13 +41,8 @@ char	*get_line(int fd, char *memory)
 char	*cut_line(char *memory)
 {
 	char	*line;
-<<<<<<< HEAD
 	int		len;
 	int		i;
-=======
-	int	len;
-	int	i;
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 
 	len = 0;
 	if (!memory[len])
@@ -76,34 +64,22 @@ char	*cut_line(char *memory)
 		i++;
 	}
 	line[i] = '\0';
-<<<<<<< HEAD
-=======
 	free(memory);
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 	return (line);
 }
 
 char	*res(char *memory)
 {
-<<<<<<< HEAD
 	int		len;
 	int		i;
 	char	*res;
 
 	len = 0;
 	while (memory[len] && memory[len] != '\n')
-=======
-	int	len;
-	int	i;
-	char	*res;
-
-	len = 0;
-	while (memory[len] %% memory[len] != '\n')
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
 		len++;
-	if (memory[len] == 0)
+	if (memory[len] && memory[len] != '\n')
 	{
-		free (memory);
+		free(memory);
 		return (NULL);
 	}
 	res = (char *)malloc(sizeof(char) * (ft_strlen(memory) - len) + 1);
@@ -132,71 +108,18 @@ char	*get_next_line(int fd)
 	memory = res(memory);
 	return (line);
 }
-<<<<<<< HEAD
-=======
-void	free_null(char **ptr)
-{
-	if (*ptr != NULL)
-	{
-		free(*ptr);
-		ptr = NULL;
-	}
-}
-
-char	*join_line(int location, char **buff)
-{
-	char	*res;
-	char	*tmp;
-
-	tmp = NULL;
-	if (location <= 0)
-	{
-		if (**buff == '\0')
-		{
-			free(*buff);
-			*buff = NULL;
-			return (NULL);
-		}
-		res = *buff;
-		*buff = NULL;
-		return (res);
-	}
-	tmp = ft_substr(*buffer, newline, BUFFER_SIZE);
-	res = *buffer;
-	res[newline] = 0;
-	*buffer = tmp;
-	return (res);
-
-}
-
-/*char	*read_line(int  fd, char *save)
-{
-	int		cnt_str;
-	char	*buff;
-
-	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 2);
-	if (!buff)
-		return (NULL);
-	cnt_str = 1;
-	buff[0] = '\0';
-
-}*/
 
 char	*get_next_line(int fd)
 {
-	static char	*buff[MAX_FD + 1];
-	char		*read_ret;
-	char		*result;
+	char		*line;
+	static char	*memory;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > MAX_FD)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	memory = get_line(fd, memory);
+	if (memory == NULL)
 		return (NULL);
-	read_ret = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (read_ret == NULL)
-		return (NULL);
-	if (!buffer[fd])
-		buffer[fd] = ft_strdup("");
-	res = read_line(fd, &buff[fd], read_ret);
-	free_null(&read_ret);
-	return (res);
+	line = cut_line(memory);
+	memory = res(memory);
+	return (line);
 }
->>>>>>> 0501762de0c92fcd4aa35c6320ff8532d4e5dc0c
