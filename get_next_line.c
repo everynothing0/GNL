@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:28:55 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/30 13:47:27 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:29:08 by cde-voog         ###   ########.fr       */
 /*                                                   ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ char	*get_line(int fd, char *memory)
 	while (cnt != 0 && !ft_strchr(buffer, '\n'))
 	{
 		cnt = read(fd, buff, BUFFER_SIZE);
-		if (cnt == -1);
+		if (cnt == -1)
 		{
 			free(buff);
 			return (NULL);
@@ -64,7 +64,6 @@ char	*cut_line(char *memory)
 		i++;
 	}
 	line[i] = '\0';
-	free(memory);
 	return (line);
 }
 
@@ -77,9 +76,9 @@ char	*res(char *memory)
 	len = 0;
 	while (memory[len] && memory[len] != '\n')
 		len++;
-	if (memory[len] && memory[len] != '\n')
+	if (memory[len] == 0)
 	{
-		free(memory);
+		free (memory);
 		return (NULL);
 	}
 	res = (char *)malloc(sizeof(char) * (ft_strlen(memory) - len) + 1);
@@ -92,21 +91,6 @@ char	*res(char *memory)
 	res[i] = '\0';
 	free(memory);
 	return (res);
-}
-
-char	*get_next_line(int fd)
-{
-	char		*line;
-	static char	*memory;
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	memory = get_line(fd, memory);
-	if (memory == NULL)
-		return (NULL);
-	line = cut_line(memory);
-	memory = res(memory);
-	return (line);
 }
 
 char	*get_next_line(int fd)

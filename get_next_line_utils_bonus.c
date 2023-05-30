@@ -6,17 +6,17 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:30:09 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/13 23:51:01 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/05/29 20:31:51 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	size_t	i;
 	size_t	j;
-	char *res;
+	char	*res;
 
 	i = 0;
 	j = 0;
@@ -47,7 +47,7 @@ char	ft_strchr(const char *s, int c)
 	return ((char *)s + cnt);
 }
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
