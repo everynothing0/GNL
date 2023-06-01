@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:30:09 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/06/01 21:03:43 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:06:09 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!res || !s1 || !s2)
 		return (NULL);
 	while (s1[i] != '\0')
-		res[i++] = s1[i++];
+	{
+		res[i] = s1[i];
+		i++;
+	}
 	while (s2[j] != '\0')
 		res[i++] = s2[j++];
 	res[i] = '\0';
