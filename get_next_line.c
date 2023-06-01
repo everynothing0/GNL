@@ -23,7 +23,7 @@ char	*get_line(int fd, char *memory)
 		return (NULL);
 	cnt = 1;
 	buff[0] = '\0';
-	while (cnt != 0 && !ft_strchr(buffer, '\n'))
+	while (cnt != 0 && !ft_strchr(buff, '\n'))
 	{
 		cnt = read(fd, buff, BUFFER_SIZE);
 		if (cnt == -1)

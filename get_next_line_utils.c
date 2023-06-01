@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:29:51 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/13 23:35:30 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:27:39 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -44,7 +44,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-char	ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int		cnt;
 	char	car;
