@@ -6,7 +6,7 @@
 /*   By: cde-voog <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:30 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/29 20:27:52 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:49:24 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_line(int fd, char *memory)
 		return (NULL);
 	cnt = 1;
 	buff[0] = '\0';
-	while (cnt != 0 && !ft_strchr(buffer, '\n'))
+	while (cnt != 0 && !ft_strchr(buff, '\n'))
 	{
 		cnt = read(fd, buff, BUFFER_SIZE);
 		if (cnt == -1)
@@ -59,7 +59,7 @@ char	*cut_line(char *memory)
 	}
 	if (memory[i] == '\n')
 	{
-		line[i] = save[i];
+		line[i] = memory[i];
 		i++;
 	}
 	line[i] = '\0';
