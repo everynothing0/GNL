@@ -6,7 +6,7 @@
 /*   By: cde-voog <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:30 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/06/01 20:52:19 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:58:08 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_line(int fd, char *memory)
 {
-	int		*cnt;
+	int		cnt;
 	char	*buff;
 
 	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 2);
