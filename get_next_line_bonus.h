@@ -31,8 +31,4 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *str);
 
-char	*ft_get_line(char *memory);
-char	*ft_save(char *memory);
-char	*ft_read_and_save(int fd, char *save);
-
 #endif

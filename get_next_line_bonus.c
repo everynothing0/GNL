@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_get_line(char *memory)
+static char	*ft_get_line(char *memory)
 {
 	int		i;
 	char	*s;
@@ -40,7 +40,7 @@ char	*ft_get_line(char *memory)
 	return (s);
 }
 
-char	*ft_save(char *memory)
+static char	*ft_save(char *memory)
 {
 	char	*s;
 	int		c;
@@ -66,7 +66,7 @@ char	*ft_save(char *memory)
 	return (s);
 }
 
-char	*ft_read_and_save(int fd, char *memory)
+static char	*ft_read_and_save(int fd, char *memory)
 {
 	char	*buff;
 	int		read_bytes;
@@ -80,6 +80,7 @@ char	*ft_read_and_save(int fd, char *memory)
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
+			free(memory);
 			free(buff);
 			return (NULL);
 		}
