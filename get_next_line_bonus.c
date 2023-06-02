@@ -6,103 +6,101 @@
 /*   By: cde-voog <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 17:46:30 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/06/01 20:58:08 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:12:11 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-char	*get_line(int fd, char *memory)
+char	*ft_get_line(char *memory)
 {
-	int		cnt;
-	char	*buff;
+	int		i;
+	char	*s;
 
-	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 2);
+	i = 0;
+	if (!memory[i])
+		return (NULL);
+	while (memory[i] && memory[i] != '\n')
+		i++;
+	s = (char *)malloc(sizeof(char) * (i + 2));
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (memory[i] && memory[i] != '\n')
+	{
+		s[i] = memory[i];
+		i++;
+	}
+	if (memory[i] == '\n')
+	{
+		s[i] = memory[i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
+}
+
+char	*ft_save(char *memory)
+{
+	char	*s;
+	int		c;
+	int		i;
+
+	i = 0;
+	while (memory[i] && memory[i] != '\n')
+		i++;
+	if (!memory[i])
+	{
+		free(memory);
+		return (NULL);
+	}
+	s = (char *)malloc(sizeof(char) * (ft_strlen(memory) - i + 1));
+	if (!s)
+		return (NULL);
+	i++;
+	c = 0;
+	while (memory[i])
+		s[c++] = memory[i++];
+	s[c] = '\0';
+	free(memory);
+	return (s);
+}
+
+char	*ft_read_and_save(int fd, char *memory)
+{
+	char	*buff;
+	int		read_bytes;
+
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	cnt = 1;
-	buff[0] = '\0';
-	while (cnt != 0 && !ft_strchr(buff, '\n'))
+	read_bytes = 1;
+	while (!ft_strchr(memory, '\n') && read_bytes != 0)
 	{
-		cnt = read(fd, buff, BUFFER_SIZE);
-		if (cnt == -1)
+		read_bytes = read(fd, buff, BUFFER_SIZE);
+		if (read_bytes == -1)
 		{
 			free(buff);
 			return (NULL);
 		}
-		buff[cnt] = '\0';
+		buff[read_bytes] = '\0';
 		memory = ft_strjoin(memory, buff);
 	}
 	free(buff);
 	return (memory);
 }
 
-char	*cut_line(char *memory)
-{
-	char	*line;
-	int		len;
-	int		i;
-
-	len = 0;
-	if (!memory[len])
-		return (NULL);
-	while (memory[len] && memory[len] != '\n')
-		len++;
-	line = (char *)malloc(sizeof(char) * (len + 2));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (memory[i] && memory[i] != '\n')
-	{
-		line[i] = memory[i];
-		i++;
-	}
-	if (memory[i] == '\n')
-	{
-		line[i] = memory[i];
-		i++;
-	}
-	line[i] = '\0';
-	return (line);
-}
-
-char	*res(char *memory)
-{
-	int		len;
-	int		i;
-	char	*res;
-
-	len = 0;
-	while (memory[len] && memory[len] != '\n')
-		len++;
-	if (memory[len] == 0)
-	{
-		free(memory);
-		return (NULL);
-	}
-	res = (char *)malloc(sizeof(char) * (ft_strlen(memory) - len) + 1);
-	if (!res)
-		return (NULL);
-	i = 0;
-	len++;
-	while (memory[len])
-		res[i++] = memory[len++];
-	res[i] = '\0';
-	free(memory);
-	return (res);
-}
-
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*memory[257];
+	static char	*save[257];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (0);
-	memory[fd] = get_line(fd, memory[fd]);
-	if (memory[fd] == NULL)
+	save[fd] = ft_read_and_save(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
-	line = cut_line(memory[fd]);
-	memory[fd] = res(memory[fd]);
+	line = ft_get_line(save[fd]);
+	save[fd] = ft_save(save[fd]);
 	return (line);
 }
