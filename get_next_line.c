@@ -13,7 +13,7 @@
 
 #include "get_next_line.h"
 
-char	*get_line(int fd, char *memory)
+static char	*get_line(int fd, char *memory)
 {
 	int		cnt;
 	char	*buff;
@@ -28,6 +28,7 @@ char	*get_line(int fd, char *memory)
 		cnt = read(fd, buff, BUFFER_SIZE);
 		if (cnt == -1)
 		{
+			free(memory);
 			free(buff);
 			return (NULL);
 		}
@@ -38,7 +39,7 @@ char	*get_line(int fd, char *memory)
 	return (memory);
 }
 
-char	*cut_line(char *memory)
+static char	*cut_line(char *memory)
 {
 	char	*line;
 	int		len;
@@ -67,7 +68,7 @@ char	*cut_line(char *memory)
 	return (line);
 }
 
-char	*res(char *memory)
+static char	*res(char *memory)
 {
 	int		len;
 	int		i;
