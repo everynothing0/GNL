@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:29:51 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/06/02 14:24:57 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:41:08 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
