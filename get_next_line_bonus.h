@@ -6,7 +6,7 @@
 /*   By: cde-voog <cde-voog@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 21:30:43 by cde-voog          #+#    #+#             */
-/*   Updated: 2023/05/14 18:13:17 by cde-voog         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:18:26 by cde-voog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(char *str, int c);
+char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(char *str);
+
+char	*ft_get_line(char *memory);
+char	*ft_save(char *memory);
+char	*ft_read_and_save(int fd, char *save);
 
 #endif
